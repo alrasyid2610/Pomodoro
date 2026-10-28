@@ -1,0 +1,53 @@
+:root {
+  --bg: #fdf6f0;
+  --card: #ffffff;
+  --text: #2b2b2b;
+  --accent: #e5533d;
+  --muted: #8a8a8a;
+}
+body.short { --accent: #2f9e8f; }
+body.long  { --accent: #3a6ea5; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  transition: background .3s;
+}
+.app {
+  width: min(420px, calc(100% - 32px));
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,.08);
+}
+h1 { margin: 0 0 16px; font-size: 1.4rem; }
+.modes { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+button {
+  font: inherit;
+  border: 1px solid #ddd;
+  background: transparent;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.modes button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.time {
+  font-size: clamp(3.5rem, 18vw, 5.5rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  margin: 24px 0;
+  color: var(--accent);
+}
+.controls { display: flex; gap: 8px; justify-content: center; }
+.primary { background: var(--accent); color: #fff; border-color: var(--accent); min-width: 100px; }
+.counter { color: var(--muted); margin-top: 20px; }
+.settings { text-align: left; margin-top: 12px; }
+.settings label { display: flex; justify-content: space-between; align-items: center; margin: 8px 0; gap: 8px; }
+.settings input { width: 70px; padding: 4px; }
