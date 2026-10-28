@@ -18,7 +18,13 @@ body {
   color: var(--text);
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   transition: background .3s;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
+body.theme-mountain { background-image: linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("assets/img/mountain.jpg"); }
+body.theme-abstract { background-image: linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("assets/img/abstract.jpg"); }
+body[class*="theme-"] .app { background: rgba(255,255,255,.85); backdrop-filter: blur(10px); }
 .app {
   width: min(420px, calc(100% - 32px));
   background: var(--card);
@@ -51,3 +57,8 @@ button {
 .settings { text-align: left; margin-top: 12px; }
 .settings label { display: flex; justify-content: space-between; align-items: center; margin: 8px 0; gap: 8px; }
 .settings input { width: 70px; padding: 4px; }
+.extras { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+.extras label { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.extras select { padding: 6px; border-radius: 8px; border: 1px solid #ddd; font: inherit; }
+.sound { display: flex; align-items: center; gap: 10px; }
+.sound input { flex: 1; accent-color: var(--accent); }

@@ -13,12 +13,21 @@ function format(sec) {
   return `${m}:${s}`;
 }
 
+const themeEl = $("theme");
+const bgm = $("bgm");
+const soundBtn = $("sound-toggle");
+const themeClass = () => (themeEl.value === "none" ? "" : `theme-${themeEl.value}`);
+const store = {
+  get: (k, d) => { try { return localStorage.getItem(k) ?? d; } catch { return d; } },
+  set: (k, v) => { try { localStorage.setItem(k, v); } catch {} },
+};
+
 function render() {
   timeEl.textContent = format(state.remaining);
   document.title = `${format(state.remaining)} · ${LABELS[state.mode]}`;
   startBtn.textContent = state.timerId ? "Jeda" : "Mulai";
   $("count").textContent = state.completed;
-  document.body.className = state.mode === "focus" ? "" : state.mode;
+  document.body.className = [state.mode === "focus" ? "" : state.mode, themeClass()].join(" ").trim();
   document.querySelectorAll(".modes button").forEach((b) =>
     b.classList.toggle("active", b.dataset.mode === state.mode));
 }
@@ -94,6 +103,25 @@ document.querySelectorAll(".modes button").forEach((b) =>
     if (v > 0) settings[key] = v;
     if (!state.timerId && key === state.mode) setMode(state.mode);
   });
+});
+
+themeEl.value = store.get("pomodoro.theme", "mountain");
+$("volume").value = store.get("pomodoro.volume", "40");
+bgm.volume = $("volume").value / 100;
+
+themeEl.addEventListener("change", () => { store.set("pomodoro.theme", themeEl.value); render(); });
+
+soundBtn.addEventListener("click", () => {
+  const playing = !bgm.paused;
+  if (playing) bgm.pause(); else bgm.play().catch(() => {});
+});
+["play", "pause"].forEach((ev) => bgm.addEventListener(ev, () => {
+  soundBtn.textContent = bgm.paused ? "🔇 Musik fokus" : "🔊 Musik fokus";
+  soundBtn.setAttribute("aria-pressed", String(!bgm.paused));
+}));
+$("volume").addEventListener("input", (e) => {
+  bgm.volume = e.target.value / 100;
+  store.set("pomodoro.volume", e.target.value);
 });
 
 render();

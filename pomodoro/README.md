@@ -12,3 +12,8 @@ Aplikasi pomodoro sederhana (HTML/CSS/JS tanpa dependensi).
 
 ## Menjalankan
 Buka `index.html` langsung di browser.
+
+## Tema & musik
+Pilih tema background (Polos / Gunung / Abstrak) dan nyalakan musik fokus dengan pengatur volume. Pilihan tema dan volume tersimpan di browser.
+
+Sumber dan lisensi media ada di [CREDITS.md](CREDITS.md).

@@ -26,6 +26,20 @@
 
     <p class="counter">Sesi fokus selesai: <span id="count">0</span></p>
 
+    <section class="extras">
+      <label>Tema
+        <select id="theme">
+          <option value="none">Polos</option>
+          <option value="mountain">Gunung</option>
+          <option value="abstract">Abstrak</option>
+        </select>
+      </label>
+      <div class="sound">
+        <button id="sound-toggle" aria-pressed="false">🔇 Musik fokus</button>
+        <input type="range" id="volume" min="0" max="100" value="40" aria-label="Volume">
+      </div>
+    </section>
+
     <details class="settings">
       <summary>Pengaturan (menit)</summary>
       <label>Fokus <input type="number" id="set-focus" min="1" max="120" value="25"></label>
@@ -34,6 +48,7 @@
       <label>Istirahat panjang tiap <input type="number" id="set-interval" min="2" max="10" value="4"> sesi</label>
     </details>
   </main>
+  <audio id="bgm" src="assets/audio/calm-ambient.mp3" loop preload="none"></audio>
   <script src="app.js"></script>
 </body>
 </html>
